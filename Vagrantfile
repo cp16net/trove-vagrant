@@ -33,6 +33,8 @@ Vagrant.configure("2") do |config|
     override.vm.box = "precise64"
     override.vm.box_url = "http://files.vagrantup.com/precise64.box"
     libvirt.memory = 3072
+    POOL_NAME = ENV['TROVE_LIBVIRT_POOL'] || "default"
+    libvirt.storage_pool_name = POOL_NAME
     libvirt.cpus = 2
     override.vm.synced_folder SOURCE_DIR, SYNC_DIR, :nfs => true
   end
